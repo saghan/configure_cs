@@ -6,8 +6,11 @@ This extracts the comment from downloaded gerrit data. It creates th following f
 	a. comments.txt with comment data
 	b. file_list.txt with names of files where the comments were made.
 	c. num_comments.txt with the number of comments downloaded
+	
+3. a.Run file_downloader.py
+	This downloads the file where Gerrit code review comments were made.
 
-3. Run cs_runner.py
+3. b. Run cs_runner.py
 This runs CheckStyle on the files where the comments were made.
 
 4. Run run_gumtree.py
