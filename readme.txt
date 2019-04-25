@@ -1,5 +1,5 @@
 1. Run gerrit_downloader.py 
-This downloads the data from gerrit
+This downloads the data from gerrit. Make sure to edit the file in line #2 to add your gerrit credentials.
 
 2. Run comment_extractor.py
 This extracts the comment from downloaded gerrit data. It creates th following files:
