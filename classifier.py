@@ -63,7 +63,7 @@ all_warning=[]
 CSDesc=[]
 CSWarn=[]
 check_unsplitted_split_dict={}
-# with file_opener.myopen('/Users/xxx/Desktop/notes/CSDescriptions.txt') as CSFile:
+# with file_opener.myopen('/Users/usename/Desktop/notes/CSDescriptions.txt') as CSFile:
 #     for line in CSFile:
 #         CSDesc.append(line.split('\t')[1])
 #         CSWarn.append(line.split('\t')[0])
@@ -87,7 +87,7 @@ with file_opener.myopen('new_oracle.txt','r') as repeated_comm:#final,  all_info
         line=line.strip()
         repeated_comm_warn.append(line)
 
-warning_file=open('warning_result.txt','w')
+warning_file=open('warning_result.txt'+str(threshold_arg),'w+')
 
 extra_desc_list=[]
 
@@ -114,6 +114,7 @@ for shuffle_ind in range(1):
         test.append(all_comm[fold_i])
         test_data=test[0]
         # train=all_comm.pop(fold_i)
+        test_proj=test_data.split('\t')[0]
         warn_comm_dict={}
         # print 'test ',test
         train=[x for x in all_comm if (x not in test)]
@@ -131,7 +132,8 @@ for shuffle_ind in range(1):
             # warning=preprocess_SWy.preprocess(warning)
             warning=warning.replace('[','')
             warning=warning.replace(']','')
-            if(warning=="not_related_to_checkstyle" or warning=="NA"):
+            train_proj=repeated_comm_warn[i].split('\t')[0]
+            if(warning=="not_related_to_checkstyle" or warning=="NA" or train_proj==test_proj):
                 continue
             if (warning in warn_comm_dict):
                 warn_comm_dict[warning]=warn_comm_dict[warning] + ' | ' + comment
@@ -155,8 +157,8 @@ for shuffle_ind in range(1):
             # cs_file_loc= findloc(project_name,full_file.strip())
 
             # if cs_file_loc=='no':
-            #     cs_file_loc='/Users/xxx/Desktop/own_code_extraction/consolidated/'+file_name
-            cs_file_loc="cs_op/"+file_name+".java.txt"
+            #     cs_file_loc='/Users/usename/Desktop/own_code_extraction/consolidated/'+file_name
+            cs_file_loc="dummy"+"cs_op/"+file_name+".java.txt"
             print('trying to open '+cs_file_loc)
             if os.path.isfile(cs_file_loc):
                 with file_opener.myopen(cs_file_loc,'r') as cs_op_file:
@@ -403,6 +405,7 @@ for shuffle_ind in range(1):
                     print 'sim_val_warn_list[j][0]<float(threshold_dict[warn_after_using_cs.strip()])',sim_val_warn_list[j][0],float(threshold_dict[warn_after_using_cs.strip()])
                     # if(sim_val_warn_list[j][0]<float(threshold_dict[warn_after_using_cs.strip()])):
                     res_from_gumtree=''
+                    
                     if(float(threshold_arg) >sim_val_warn_list[j][0]):
                     # if(1==1):
 
@@ -410,6 +413,8 @@ for shuffle_ind in range(1):
                         if(changeFromGumTree(test_data) !=''):
                             res_from_gumtree=changeFromGumTree(test_data)
                             print('usename... change extracted from gumtree')
+                            res_from_gumtree=''
+
 
                         if (res_from_gumtree==''):
                             warn_after_using_cs='not_related_to_checkstyle'
@@ -419,6 +424,7 @@ for shuffle_ind in range(1):
 
                             print('gumtree got warning '+warn_after_using_cs)
                         print 'sim_val less than threshold','matched to',warn_after_using_cs,
+                    
                 print '\n|matched warning  = ', warn_after_using_cs,#warning_matched_b4_CS,
                 if (test_warn.strip() == warn_after_using_cs.strip()):
                     print 'match is found',
