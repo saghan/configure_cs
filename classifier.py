@@ -63,7 +63,7 @@ all_warning=[]
 CSDesc=[]
 CSWarn=[]
 check_unsplitted_split_dict={}
-# with file_opener.myopen('/Users/saghan/Desktop/notes/CSDescriptions.txt') as CSFile:
+# with file_opener.myopen('/Users/xxx/Desktop/notes/CSDescriptions.txt') as CSFile:
 #     for line in CSFile:
 #         CSDesc.append(line.split('\t')[1])
 #         CSWarn.append(line.split('\t')[0])
@@ -155,7 +155,7 @@ for shuffle_ind in range(1):
             # cs_file_loc= findloc(project_name,full_file.strip())
 
             # if cs_file_loc=='no':
-            #     cs_file_loc='/Users/Saghan/Desktop/own_code_extraction/consolidated/'+file_name
+            #     cs_file_loc='/Users/xxx/Desktop/own_code_extraction/consolidated/'+file_name
             cs_file_loc="cs_op/"+file_name+".java.txt"
             print('trying to open '+cs_file_loc)
             if os.path.isfile(cs_file_loc):
@@ -406,14 +406,14 @@ for shuffle_ind in range(1):
                     if(float(threshold_arg) >sim_val_warn_list[j][0]):
                     # if(1==1):
 
-                        print('saghan... sim lt threshold')
+                        print('usename... sim lt threshold')
                         if(changeFromGumTree(test_data) !=''):
                             res_from_gumtree=changeFromGumTree(test_data)
-                            print('saghan... change extracted from gumtree')
+                            print('usename... change extracted from gumtree')
 
                         if (res_from_gumtree==''):
                             warn_after_using_cs='not_related_to_checkstyle'
-                            print('saghan... no res from gumtree')
+                            print('usename... no res from gumtree')
                         else:
                             warn_after_using_cs=res_from_gumtree
 
